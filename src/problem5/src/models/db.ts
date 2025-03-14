@@ -8,8 +8,8 @@ const sequelize = new Sequelize(
   process.env.DB_USER!,
   process.env.DB_PASS!,
   {
-    host: process.env.DB_HOST,
-    dialect: "postgres",
+    host: process.env.DB_HOST_SQLITE,
+    dialect: "sqlite", // Change to "postgresql" if PostgreSQL will be used
     logging: false,
   }
 );

@@ -16,11 +16,19 @@ export const getUsers = async (filters: UserFilters) => {
   const whereClause: any = {};
 
   if (filters.name) {
-    whereClause.name = { [Op.iLike]: `%${filters.name}%` };
+    /* Use Code below if using PostgreSQL as SQLite doesn't support 'iLike' */
+    // whereClause.name = { [Op.iLike]: `%${filters.name}%` };
+
+    /* Code Below uses 'like' instead of 'iLike' */
+    whereClause.name = { [Op.like]: `%${filters.name}%` };
   }
 
   if (filters.email) {
-    whereClause.email = { [Op.iLike]: `%${filters.email}%` };
+    /* Use Code below if using PostgreSQL as SQLite doesn't support 'iLike' */
+    // whereClause.email = { [Op.iLike]: `%${filters.email}%` };
+    
+    /* Code Below uses 'like' instead of 'iLike' */
+    whereClause.email = { [Op.like]: `%${filters.email}%` };
   }
 
   return await User.findAll({ where: whereClause });
